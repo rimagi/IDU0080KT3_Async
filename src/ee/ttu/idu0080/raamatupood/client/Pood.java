@@ -111,12 +111,13 @@ public class Pood {
 		objectMessage.setObject(tl); 
 		log.info("Sending msg1");
 		producer.send(objectMessage);
-
+		Thread.sleep(1000);
 		// saada teine tellimus - ühegi väljata 
 		Tellimus tl2 = new Tellimus();
 		objectMessage.setObject(tl2); 
 		log.info("Sending msg2");
 		producer.send(objectMessage);
+		Thread.sleep(1000);
 
 		// saada kolmas tellimus - vigase toote nimega  
 		Tellimus tl3 = new Tellimus();
@@ -124,6 +125,7 @@ public class Pood {
 		objectMessage.setObject(tl3); 
 		log.info("Sending msg3");
 		producer.send(objectMessage);
+		Thread.sleep(1000);
 
 		// saada neljas tellimus - kolme tootega   
 		Tellimus tl4 = new Tellimus();
@@ -177,7 +179,7 @@ public class Pood {
 					String msg = objectMessage.getObject().toString();
 					log.info("Received: " + msg);
 					if (resp.tulemus)
-						log.info(String.format("Hind: %d", resp.koondHind.intValue()));
+						log.info(String.format("Hind: %f", resp.koondHind.doubleValue()));
 					else
 						log.info("Vabrikust viga: " + resp.veaKirjeldus);
 
